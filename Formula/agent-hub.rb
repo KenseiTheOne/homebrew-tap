@@ -1,13 +1,9 @@
 class AgentHub < Formula
   desc "Menu bar hub for the AI agents on your Mac: sessions, quota, plugins"
   homepage "https://github.com/KenseiTheOne/agent-hub"
-  # The repository is private for now: brew fetches it with git and your own credentials (the git keychain).
-  # Once it is public, switch to the release tarball — a one-line change:
-  #   url "https://github.com/KenseiTheOne/agent-hub/archive/refs/tags/v0.1.0.tar.gz"
-  #   sha256 "<shasum -a 256 of that file>"
-  url "https://github.com/KenseiTheOne/agent-hub.git",
-      tag:      "v0.1.0",
-      revision: "ed19da8ae3d8c333bb0dad391b181bf1e329ae2a"
+  url "https://github.com/KenseiTheOne/agent-hub/archive/refs/tags/v0.1.0.tar.gz"
+  sha256 "59c3eb88aaaf8cf019ccd7f43adc04b71c640175ecceffadd0b39c0f7404d695"
+  license "MIT"
   head "https://github.com/KenseiTheOne/agent-hub.git", branch: "main"
 
   depends_on macos: :tahoe
@@ -19,11 +15,11 @@ class AgentHub < Formula
 
   def install
     # Everything the hub needs to build itself (daemon, app sources, scripts, plugins, hook, bridge).
-    # The screenshots in docs/ (~45 MB), experiments/ and the agents' CLAUDE.md are not needed;
-    # the docs themselves are small and stay.
-    libexec.install Dir["*"] - %w[docs experiments CLAUDE.md]
+    # The screenshots in docs/ and the agents' CLAUDE.md are not needed; the docs themselves are small and stay.
+    libexec.install Dir["*"] - %w[docs CLAUDE.md]
     (libexec/"docs").install Dir["docs/*.md"]
-    # The commit of this release — the hub shows it under "Details" (a tarball has no .git: then no file).
+    # The commit — the hub shows it under "Details". Only a `head` build has .git; the release tarball has none,
+    # and the hub works without the file.
     (libexec/"COMMIT").write "#{Utils.git_head(buildpath)}\n" if (buildpath/".git").exist?
 
     # The CLI. NODE_OPTIONS is dropped: preloads in it (e.g. from a terminal multiplexer) break the hub's

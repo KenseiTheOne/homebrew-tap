@@ -39,8 +39,3 @@ brew uninstall agent-hub
 ```
 
 `agenthub uninstall --apply --purge` also removes settings, the journal and plugin data.
-
-### Private repository
-
-While the Agent Hub repository is private, Homebrew fetches it with git and your own credentials (the git keychain),
-so you need read access to it. When the repository becomes public, the formula switches to the release tarball.

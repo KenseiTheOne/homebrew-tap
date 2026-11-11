@@ -1,8 +1,8 @@
 class AgentHub < Formula
   desc "Menu bar hub for the AI agents on your Mac: sessions, quota, plugins"
   homepage "https://github.com/KenseiTheOne/agent-hub"
-  url "https://github.com/KenseiTheOne/agent-hub/archive/refs/tags/v0.1.1.tar.gz"
-  sha256 "c90987a307a48e414a36488d6969e7009cab48a2d8d33553c3edc4d8ba92671f"
+  url "https://github.com/KenseiTheOne/agent-hub/archive/refs/tags/v0.1.2.tar.gz"
+  sha256 "efd70fcd14f76236f7e667252cd33ab612009593a9a611c985921f3a588be01b"
   license "MIT"
   head "https://github.com/KenseiTheOne/agent-hub.git", branch: "main"
 
